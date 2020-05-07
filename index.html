@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webRTC</title>
+</head>
+<body>
+    <script>
+        function onVidyoClientLoaded(status) {
+            console.log("VidyoClient load state -" + status.state)
+            if (status.state == "READY") {
+                VC.CreateVidyoConnect({
+                    viewId: "renderer",
+                    viewStyle: "VIDYO_CONNECTORVIEWSTYLE_Default",
+                    remoteParticipants: 16,
+                    logFileFilter: "error",
+                    logFileName: "",
+                    userData: "",
+                }).then(function (vc) {
+                    console.log("Create Success")
+                }).catch(function(error){
+
+                });
+            } 
+        }
+    </script>
+    <script src="https://static.vidyo.io/latest/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
+    <h3>Hello</h3>
+    <div id="renderer"></div>
+</body>
+</html>
